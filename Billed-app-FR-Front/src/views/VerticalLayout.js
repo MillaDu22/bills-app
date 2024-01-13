@@ -12,7 +12,7 @@ export default (height) => {
       return (
         `
         <div class='vertical-navbar' style='height: ${height}vh;'>
-          <div class='layout-title'> Billed </div>
+          <h1 class='layout-title'> Billed </h1>
           <div id='layout-icon1' data-testid="icon-window">
             ${WindowIcon}
           </div>
@@ -29,7 +29,7 @@ export default (height) => {
       return (
         `
         <div class='vertical-navbar' style='height: ${height}vh;'>
-          <div class='layout-title'> Billed </div>
+          <h1 class='layout-title'> Billed </h1>
             <div id='layout-disconnect' data-testid='layout-disconnect'>
               ${DisconnectIcon}
             </div>

@@ -3,6 +3,13 @@
   margin-top: 20px;
 }
 
+.bold-label{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
 .input-field {
   background: #f9f9f9;
   border-radius: 5px;

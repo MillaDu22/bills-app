@@ -5,11 +5,11 @@ import eyeWhite from '../assets/svg/eye_white.js'
 import { formatDate } from '../app/format.js'
 
 export const modal = () => (`
-  <div class="modal fade" id="modaleFileAdmin1" data-testid="modaleFileAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="modaleFileAdmin1" data-testid="modaleFileAdmin" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Justificatif</h5>
+          <h3 class="modal-title" id="exampleModalLongTitle">Justificatif</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -27,31 +27,31 @@ export default (bill) => {
     <div class="container dashboard-form" data-testid="dashboard-form">
       <div class="row">
         <div class="col-sm" id="dashboard-form-col1">
-          <label for="expense-type" class="bold-label">Type de dépense</label>
+          <span class="bold-label">Type de dépense</span>
           <div class='input-field'> ${bill.type} </div>
-          <label for="expense-name" class="bold-label">Nom de la dépense</label>
+          <span class="bold-label">Nom de la dépense</span>
           <div class='input-field'> ${bill.name} </div>
-          <label for="datepicker" class="bold-label">Date</label>
+          <span class="bold-label">Date</span>
           <div class='input-field input-flex'>
             <span>${formatDate(bill.date)}</span>
             <span> ${calendarIcon} </span>
           </div>
         </div>
         <div class="col-sm" id="dashboard-form-col2">
-          <label for="commentary" class="bold-label">Commentaire</label>
+          <span class="bold-label">Commentaire</span>
           <div class='textarea-field' style="height: 300px;"> ${bill.commentary} </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm">
-          <label for="amount" class="bold-label">Montant TTC </label>
+          <span class="bold-label">Montant TTC </span>
           <div class='input-field input-flex'>
             <span data-testid="amount-d">${bill.amount}</span>
             <span> ${euroIcon} </span>
           </div>
         </div>
         <div class="col-sm">
-          <label for="vat" class="bold-label">TVA</label>
+          <span class="bold-label">TVA</span>
           <div id='vat-flex-container'>
             <div class='input-field input-flex vat-flex'>
               <span>${bill.vat}</span>
@@ -66,7 +66,7 @@ export default (bill) => {
       </div>
       <div class="row">
         <div class="col-sm">
-          <label for="file" class="bold-label">Justificatif</label>
+          <span class="bold-label">Justificatif</span>
             <div class='input-field input-flex file-flex'>
             <span id="file-name-admin">${bill.fileName}</span>
             <div class='icons-container'>
@@ -79,11 +79,11 @@ export default (bill) => {
        ${bill.status === 'pending' ? (`
         <div class="col-sm">
           <label for="commentary-admin" class="bold-label">Ajouter un commentaire</label>
-          <textarea id="commentary2" class="form-control blue-border" data-testid="commentary2" rows="5"></textarea>
+          <textarea id="commentary-admin" class="form-control blue-border" data-testid="commentary2" rows="5"></textarea>
         </div>
        `) : (`
         <div class="col-sm">
-          <label for="commentary-admin" class="bold-label">Votre commentaire</label>
+          <span class="bold-label">Votre commentaire</span>
           <div class='input-field'> ${bill.commentAdmin} </div>
         </div>
        `)}
