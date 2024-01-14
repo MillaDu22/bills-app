@@ -86,6 +86,8 @@ export default class {
   }
 
   handleEditTicket(e, bill, bills) {
+    // Fix bug 4 //
+    e.stopPropagation();
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
@@ -111,6 +113,8 @@ export default class {
   }
 
   handleAcceptSubmit = (e, bill) => {
+    // Fix bug 4 //
+    e.stopPropagation();
     const newBill = {
       ...bill,
       status: 'accepted',
@@ -121,6 +125,8 @@ export default class {
   }
 
   handleRefuseSubmit = (e, bill) => {
+    // Fix bug 4 //
+    e.stopPropagation();
     const newBill = {
       ...bill,
       status: 'refused',
@@ -131,6 +137,8 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
+    // Fix bug 4 //
+    e.stopPropagation();
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
     if (this.counter % 2 === 0) {
