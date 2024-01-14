@@ -15,9 +15,22 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
+  
   handleChangeFile = e => {
     e.preventDefault()
-    const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
+    const fileInput = this.document.querySelector(`input[data-testid="file"]`);
+    const file = fileInput.files[0];
+  
+    // Vérifie si le fichier a une extension autorisée //
+    const allowedExtensions = ['jpg', 'jpeg', 'png'];
+    const fileNameParts = file.name.split('.');
+    const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+  
+    if (allowedExtensions.includes(fileExtension)) {
+      // Réinitialise le message d'erreur si tout est correct //
+      document.getElementById('file-error-message').textContent = '';
+  
+    // Continue avec le traitement du fichier autorisé //
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
@@ -34,12 +47,18 @@ export default class NewBill {
         }
       })
       .then(({fileUrl, key}) => {
-        console.log(fileUrl)
         this.billId = key
         this.fileUrl = fileUrl
         this.fileName = fileName
-      }).catch(error => console.error(error))
-  }
+      })
+      .catch(error => console.error(error))
+    } else {
+    // Affiche un message d'erreur pour les extensions non autorisées //
+    document.getElementById('file-error-message').textContent = "Veuillez charger un fichier au format jpg, jpeg ou png";
+    fileInput.value = ""; // Réinitialise l'input file //
+    }
+  };
+
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
