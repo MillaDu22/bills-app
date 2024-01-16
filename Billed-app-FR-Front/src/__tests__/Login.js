@@ -8,6 +8,69 @@ import { ROUTES } from "../constants/routes";
 import { fireEvent, screen } from "@testing-library/dom";
 
 describe("Given that I am a user on login page", () => {
+//
+  describe("When createUser is called with invalid credentials", () => {
+    test("Then it should throw an error", async () => {
+      document.body.innerHTML = LoginUI();
+      const inputData = {
+        type: "Admin",
+        email: "incorrect@email.com",
+        password: "wrongpassword",
+        status: "connected",
+      };
+      // Mock store, simulation erreur de creation user //
+      const store = {
+        users: () => ({
+          create: jest.fn().mockRejectedValue(new Error("Failed to create user")),
+        }),
+      };
+      const login = new Login({
+        document,
+        localStorage: window.localStorage,
+        onNavigate: jest.fn(),
+        PREVIOUS_LOCATION: "",
+        store,
+      });
+      // Appel createUser et expect throw an error //
+      await expect(login.createUser(inputData)).rejects.toThrow("Failed to create user");
+    });
+  });
+
+  describe("When createUser is called with valid credentials", () => {
+    test("Then it should create a new user and call login", async () => {
+      document.body.innerHTML = LoginUI();
+      const inputData = {
+        type: "Admin",
+        email: "correct@email.com",
+        password: "correctpassword",
+        status: "connected",
+      };
+      // Mock store //
+      const store = {
+        users: () => ({
+          create: jest.fn().mockResolvedValue({}),
+        }),
+        login: jest.fn().mockResolvedValue({ jwt: "somejwt" }), 
+      };
+      const login = new Login({
+        document,
+        localStorage: window.localStorage,
+        onNavigate: jest.fn(),
+        PREVIOUS_LOCATION: "",
+        store,
+      });
+      // Appel createUser //
+      await login.createUser(inputData);
+      // Vérifie que la fonction login a été appelée //
+      if (store.login) {
+        expect(store.login).toHaveBeenCalled();
+      } else {
+        // Simulation, lance une erreur //
+        console.error("La fonction login n'est pas définie dans le store.");
+      }
+    });
+  });
+//
   describe("When I do not fill fields and I click on employee button Login In", () => {
     test("Then It should renders Login page", () => {
       document.body.innerHTML = LoginUI();
