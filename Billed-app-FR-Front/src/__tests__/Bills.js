@@ -70,7 +70,7 @@ describe('Given I am connected as an Employee', () => {
   describe("When I am on Bills page, there are bills", () => {
     test("Then, first bill data should contain the right type, name, date, amount, status and eye icon", () => {
       document.body.innerHTML = BillsUI({ data: bills });
-
+      
       const bill = screen.getAllByTestId('bill');
       const type = screen.getAllByTestId('type')[0];
       const name = screen.getAllByTestId('name')[0];

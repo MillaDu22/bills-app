@@ -18,9 +18,9 @@ export default () => {
               <div class="card-body">
                 <form class="form-signin" data-testid="form-employee">
                   <h2 class="h3 mb-3 font-weight-normal">Employé</h1>
-                  <label for="inputEmailEmployee">Votre email</label>
+                  <label for="inputEmailEmployee" data-testid="label-email-employee">Votre email</label>
                   <input type="email" id="inputEmailEmployee" data-testid="employee-email-input" class="form-control" placeholder="johndoe@email.com" required autofocus autocomplete="off">
-                  <label for="inputPasswordEmployee">Mot de passe</label>
+                  <label for="inputPasswordEmployee" data-testid="label-password-employee">Mot de passe</label>
                   <input type="password" id="inputPasswordEmployee" data-testid="employee-password-input" class="form-control" placeholder="******" required autocomplete="off">
                   <button class="btn btn-lg btn-primary btn-block" data-testid="employee-login-button" style="background-color: #0E5AE5;" type="submit">Se connecter</button>
                 </form>
@@ -32,9 +32,9 @@ export default () => {
               <div class="card-body">
                 <form class="form-signin" data-testid="form-admin">
                   <h2 class="h3 mb-3 font-weight-normal">Administration</h1>
-                  <label for="inputEmailAdmin">Votre email</label>
+                  <label for="inputEmailAdmin" data-testid="label-email-admin">Votre email</label>
                   <input type="email" id="inputEmailAdmin" data-testid="admin-email-input" class="form-control" placeholder="johndoe@email.com" required autofocus autocomplete="off">
-                  <label for="inputPasswordAdmin">Mot de passe</label>
+                  <label for="inputPasswordAdmin" data-testid="label-password-admin">Mot de passe</label>
                   <input type="password" id="inputPasswordAdmin" data-testid="admin-password-input" class="form-control" placeholder="******" required autocomplete="off">
                   <button type="submit" class="btn btn-lg btn-primary btn-block" data-testid="admin-login-button" style="background-color: #0E5AE5;">Se connecter</button>
                 </form>

@@ -37,26 +37,32 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
-
-    this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      })
-      .catch(error => console.error(error))
-    } else {
-    // Affiche un message d'erreur pour les extensions non autorisées //
-    document.getElementById('file-error-message').textContent = "Veuillez charger un fichier au format jpg, jpeg ou png";
-    fileInput.value = ""; // Réinitialise l'input file //
-    }
+    if (this.store && this.store.bills) {
+      this.store
+        .bills()
+        .create({
+          data: formData,
+          headers: {
+            noContentType: true
+          }
+        })
+        .then(({fileUrl, key}) => {
+          this.billId = key
+          this.fileUrl = fileUrl
+          this.fileName = fileName
+        })
+        .catch(error => console.error(error))
+        this.allowedExtension = true;
+      } else {
+        console.error('Invalid store or missing bills property');
+        this.allowedExtension = false;
+      }
+      } else {
+        // Affiche un message d'erreur pour les extensions non autorisées //
+        document.getElementById('file-error-message').textContent = "Veuillez charger un fichier au format jpg, jpeg ou png";
+        fileInput.value = ""; // Réinitialise l'input file //
+        this.allowedExtension = false;
+      }
   };
 
   handleSubmit = e => {
