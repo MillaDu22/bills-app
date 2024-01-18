@@ -25,8 +25,8 @@ const row = (bill) => {
 
 // Fix bug 1 //
 const rows = (data) => {
-  const sortedBills = (data && Array.isArray(data)) ? data.sort((a, b) => new Date(b.date) - new Date(a.date)) : [];
-  return (sortedBills && sortedBills.length) ? sortedBills.map(bill => row(bill)).join("") : "";
+  const sortedBills = data ? data.sort((a, b) => new Date(b.date) - new Date(a.date)) : [];
+  return sortedBills.length ? sortedBills.map(bill => row(bill)).join("") : "";
 };
 
 export default ({ data: bills, loading, error }) => {
