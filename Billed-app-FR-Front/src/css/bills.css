@@ -114,6 +114,15 @@ tr td:nth-of-type(5) {
   color: #0E5AE5;
 }
 
+
 .bill-proof-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: scroll;
+  width:100%;
+}
+img {
+  object-fit: cover;
+  width:1%0%;
 }
