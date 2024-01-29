@@ -116,4 +116,7 @@
   transform: rotate(90deg);
   cursor: pointer;
 }
+.modal-justif {
+  width:100%;
+}
 
